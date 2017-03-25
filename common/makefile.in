@@ -1,0 +1,24 @@
+# standard makefile for src subdirectories
+# 2008.01.07 tdr
+# $Id: makefile.in,v 1.5 2008/04/08 01:41:22 fatshark Exp $
+
+INCDIR	= ../common
+HEADERS = ../common
+
+CPP = g++
+LD = g++
+CFLAGS = -O0 -g3 -Wall -fmessage-length=0 
+
+all: tester
+
+$(LIBOBJ).o: $(LIBOBJ).cpp $(HEADERS)/$(LIBOBJ).h
+	$(CPP) $(CFLAGS) -I $(INCDIR) -c $(LIBOBJ).cpp
+
+tester.o: tester.cpp $(HEADERS)/$(LIBOBJ).h
+	$(CPP) $(CFLAGS) -I $(INCDIR) -c tester.cpp
+	
+tester: tester.o $(LIBOBJ).o
+	$(LD) $(CFLAGS) -o tester tester.o $(LIBOBJ).o
+	
+clean:
+	rm -f *.o *~ core tester tester.exe
