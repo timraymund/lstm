@@ -114,7 +114,7 @@ int main(int argc, char* argv[])
 		netTrain.netInputReset();				// reset training sequence
 	}
 
-	cout << "About to save the network." << endl;
+	cout << "About to save the network. " << endl;
 	netSaveRestore.netSave();
 
 	return 0;
