@@ -1,8 +1,0 @@
-/app/build/CMakeFiles/edit_cache.dir
-/app/build/CMakeFiles/rebuild_cache.dir
-/app/build/gate/CMakeFiles/gate.dir
-/app/build/gate/CMakeFiles/edit_cache.dir
-/app/build/gate/CMakeFiles/rebuild_cache.dir
-/app/build/src/CMakeFiles/tester.dir
-/app/build/src/CMakeFiles/edit_cache.dir
-/app/build/src/CMakeFiles/rebuild_cache.dir

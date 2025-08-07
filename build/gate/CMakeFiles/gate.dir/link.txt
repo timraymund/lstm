@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgate.a CMakeFiles/gate.dir/gate.cpp.o
-/usr/bin/ranlib libgate.a

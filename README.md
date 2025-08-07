@@ -4,39 +4,37 @@ This project is a C++ implementation of a Long Short-Term Memory (LSTM) neural n
 
 ## Building the Project
 
-The project uses a standard `Makefile` for building.
+The project uses CMake for building.
 
 ### Dependencies
 
-*   A C++ compiler that supports C++98, such as `g++`.
+*   A C++ compiler that supports C++11, such as `g++`.
+*   CMake version 3.5 or higher.
 
 ### Build Commands
 
-To build the project, run the `make` command in the root directory:
+To build the project, create a `build` directory and run `cmake` and `make` from there:
 
 ```bash
+mkdir build
+cd build
+cmake ..
 make
 ```
 
-This will compile the source code and create an executable file named `tester` in the `src/` directory.
-
-To clean up the build files, run:
-
-```bash
-make clean
-```
+This will compile the source code and create an executable file named `tester` in the `build/src/` directory.
 
 ## Usage
 
-The primary executable of this project is `src/tester`. It is hardcoded to load two configuration files from the working directory:
+The primary executable of this project is `build/src/tester`. It is hardcoded to load two configuration files from the working directory:
 
 *   `simple.cfg`: Defines the architecture of the LSTM network.
 *   `train.cfg`: Defines the training data and target outputs, using the same network definition syntax.
 
-To run the simulation, first ensure you have created the necessary configuration files, then execute the `tester`:
+To run the simulation, first ensure you have created the necessary configuration files, then execute the `tester` from the root directory:
 
 ```bash
-./src/tester
+./build/src/tester
 ```
 
 The program will then:
@@ -112,3 +110,28 @@ OE network_output lstm_block 1.0
 ```
 
 This configuration defines a single LSTM block with four separate inputs controlling its data and gates, and one output. The `.dat` files referenced in the original `simple.cfg` should contain the initial weight values for the corresponding nodes.
+
+### 3. Training Data (`train.cfg`)
+
+The `train.cfg` file defines the training data and target outputs for the network. It uses the same node and connection syntax as `simple.cfg`, but it is used to specify the training data and the expected output.
+
+**Note:** The `train.cfg` file was missing from the original repository. The following is an example of what it might look like.
+
+**Example `train.cfg`:**
+```
+# Define the training data nodes
+IE train_input_1
+IE train_input_2
+OE train_output_1
+
+# Define the connections to the network
+CONNECTIONS
+# Connect training inputs to the network's input edges
+IE input_data train_input_1 1.0
+IE input_data train_input_2 1.0
+
+# Connect the network's output edge to the training output
+OE train_output_1 network_output 1.0
+```
+
+In this example, `train_input_1` and `train_input_2` would be `.dat` files containing the training data. The `train_output_1` would be a `.dat` file containing the expected output. The training process would then adjust the network's weights to minimize the difference between the network's output and the expected output.
