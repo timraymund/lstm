@@ -67,8 +67,6 @@ protected:
     enum MakeState { NODES, CONNECTIONS };
     MakeState makeState; // the maker state
     
-    char *aNameStr; // need this to instantiate gates with name
-    
     long netInputSize;	// the minimum number of input data records available to IE
 
 public:
@@ -88,7 +86,7 @@ public:
 	}
 	
 	// constructor with a name
-	NetDefine(char* aName)
+	NetDefine(const char* aName)
 	{
 		makeNetName += aName; // set class file name
 		configurationFile.open(aName); // open the configuration file

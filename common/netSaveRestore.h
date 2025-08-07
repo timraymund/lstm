@@ -44,7 +44,7 @@ public:
 	}
 	
 	// constructor with a name
-	NetSaveRestore(char* aName)
+	NetSaveRestore(const char* aName)
 	{
 		netSaveRestoreName += aName; // set class file name	
 	}
