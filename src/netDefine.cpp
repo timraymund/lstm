@@ -30,6 +30,7 @@
 #include "gate.h"
 #include "netContainer.h"
 #include "netDefine.h"
+#include <cstring>
 
 using namespace std;
 
@@ -84,10 +85,7 @@ void NetDefine::parseConfigurationFile()
 				}
 				
 				// add an input edge
-				aNameStr = new char [nameString.size()+1];
-				strcpy(aNameStr, nameString.c_str());
-				netContainer->InputEdges[nameString] = new inEdge(aNameStr);
-				delete[] aNameStr;
+				netContainer->InputEdges[nameString] = new inEdge(nameString.c_str());
 				
 				// add this to the maps
 				networkNodeMap[nameString] = INPUTEDGE;
@@ -109,10 +107,7 @@ void NetDefine::parseConfigurationFile()
 				}
 				
 				// add a memory block
-				aNameStr = new char [nameString.size()+1];
-				strcpy(aNameStr, nameString.c_str());
-				netContainer->MemoryBlocks[nameString] = new memoryBlock(aNameStr);
-				delete[] aNameStr;
+				netContainer->MemoryBlocks[nameString] = new memoryBlock(nameString.c_str());
 				
 				// add this to the maps
 				networkNodeMap[nameString] = MEMORYBLOCK;
@@ -134,10 +129,7 @@ void NetDefine::parseConfigurationFile()
 				}
 				
 				// add an output edge
-				aNameStr = new char [nameString.size()+1];
-				strcpy(aNameStr, nameString.c_str());
-				netContainer->OutputEdges[nameString] = new outEdge(aNameStr);
-				delete[] aNameStr;
+				netContainer->OutputEdges[nameString] = new outEdge(nameString.c_str());
 				
 				// add this to the maps
 				networkNodeMap[nameString] = OUTPUTEDGE;

@@ -45,7 +45,7 @@ public:
 	}
 	
 	// constructor with a name
-	gate(char* aName)
+	gate(const char* aName)
 	{
 		gateName += aName;  // set the gate instance name
 		learningRate = 1.0; // 1.0E-6; // set the learning rate to default
@@ -54,7 +54,7 @@ public:
 	}
 	
 	// constructor with a name and a learning rate
-	gate(char* aName, double aValue)
+	gate(const char* aName, double aValue)
 	{
 		gateName += aName;  // set the gate instance name
 		learningRate = aValue; // set the learning rate
@@ -74,7 +74,7 @@ public:
 	}
 	
 	// set gate instance name
-	void setName(char* aName);
+	void setName(const char* aName);
 	
 	// connect to a gate with a weight
 	virtual void connectGate(gate* aGate, double weight);
@@ -139,7 +139,7 @@ class fGate: public gate
 {
 public:
 	// constructor with a name
-	fGate(char* aName) : gate(aName)
+	fGate(const char* aName) : gate(aName)
 	{
 		// do nothing
 	}
@@ -164,7 +164,7 @@ class gGate: public gate
 {
 public:	
 	// constructor with a name
-	gGate(char* aName) : gate(aName)
+	gGate(const char* aName) : gate(aName)
 	{
 		// do nothing
 	}
@@ -188,7 +188,7 @@ class hGate: public fGate
 {
 public:
 	// constructor with a name and file
-	hGate(char* aName) : fGate(aName)
+	hGate(const char* aName) : fGate(aName)
 	{
 		// do nothing
 	}
@@ -217,7 +217,7 @@ private:
 	deque<double> forgetPartials;
 public:
 	// constructor with a name
-	memoryCell(char* aName) : gate(aName)
+	memoryCell(const char* aName) : gate(aName)
 	{
 		// do nothing
 	}
@@ -258,7 +258,7 @@ private:
 	deque<double> outPartials;
 public:
 	// constructor with a name
-	memoryOutput(char* aName) : gate(aName)
+	memoryOutput(const char* aName) : gate(aName)
 	{
 		// do nothing
 	}
@@ -290,12 +290,13 @@ class inEdge: public gate
 {
 private:
 	ifstream inputFile; // file handle for input data
-	char* inputFileName; // file name for the handle
+	string inputFileName; // file name for the handle
 	long inputEdgeSize;		// number of records available to the edge gate
 public:
 	// constructor with a name and file
-	inEdge(char* aName) : gate(aName)
+	inEdge(const char* aName) : gate(aName)
 	{
+		inputFileName = aName;
 		// open the file
 		inputFile.open(aName);
 		
@@ -354,13 +355,12 @@ class outEdge: public fGate
 {
 private:
 	ofstream outputFile; // file handle for input data
-	char* outputFileName; // file name for the handle
+	const string outputFileName; // file name for the handle
 public:
 	// constructor with a name and file
-	outEdge(char* aName) : fGate(aName)
+	outEdge(const char* aName) : fGate(aName), outputFileName(aName), outputFile(aName)
 	{
 		// open the file
-		outputFile.open(aName);
 	}
 	
 	// destructor
@@ -391,7 +391,7 @@ private:
 	memoryOutput* blockOutput; // the block output
 	double cellError; // a term for updates
 public:
-	memoryBlock(char* aName) : gate(aName)
+	memoryBlock(const char* aName) : gate(aName)
 	{
 		// create the parts
 		cellInput = new gGate("cellInput");

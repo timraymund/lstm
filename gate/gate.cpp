@@ -20,7 +20,7 @@ using namespace std;
 
 
 // name the gate instance
-void gate::setName(char* aName)
+void gate::setName(const char* aName)
 {
 	gateName += aName;
 }

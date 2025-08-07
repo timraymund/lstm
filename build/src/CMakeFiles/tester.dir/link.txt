@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/tester.dir/tester.cpp.o CMakeFiles/tester.dir/netDefine.cpp.o CMakeFiles/tester.dir/netSaveRestore.cpp.o CMakeFiles/tester.dir/netOperate.cpp.o CMakeFiles/tester.dir/netTrain.cpp.o CMakeFiles/tester.dir/netMetric.cpp.o -o tester  ../gate/libgate.a
